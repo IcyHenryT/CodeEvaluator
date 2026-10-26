@@ -1,0 +1,85 @@
+{
+  "concepts": [
+    {
+      "id": "functions",
+      "title": "Functions and return values",
+      "explanation": "A function gives a reusable calculation a name. Write fn, the name, typed parameters in parentheses, and -> followed by the return type. pub allows other code, including the tests, to call it. i32 is a signed integer type. Parameters and ordinary let bindings are immutable by default; changing a stored value requires mut. A function returns its final expression when that expression has no semicolon. In this example, square(4) returns 16 without changing side.",
+      "example": "pub fn square(side: i32) -> i32 {\n    side * side\n}\n",
+      "unlock_after": null
+    },
+    {
+      "id": "arithmetic",
+      "title": "Arithmetic with integers",
+      "explanation": "Rust uses + for addition, - for subtraction, * for multiplication, and / for division. Integer division discards the fractional part, and parentheses group calculations. An arithmetic expression computes a new value; it does not change immutable inputs or bindings. Updating a stored value instead requires a mutable binding and an assignment. The final expression without a semicolon returns the result. Here remaining(12, 5) returns 7. Use bounded inputs that keep intermediate and final results within the integer type's range; no overflow is expected in these lessons' tests.",
+      "example": "pub fn remaining(total: i32, used: i32) -> i32 {\n    total - used\n}\n",
+      "unlock_after": null
+    },
+    {
+      "id": "variables",
+      "title": "Give values a name with let",
+      "explanation": "Inside a function, let name = expression; stores a value in a local binding, and Rust can usually infer its type. Bindings are immutable unless you add mut, so an ordinary binding cannot later be assigned another value. This example names a multiplier rather than changing it: triple_score(4) returns 12. The let statement ends with a semicolon, but the final arithmetic expression does not, so that expression supplies the i32 return value. This concept is available from the start and is practiced in lesson 01.",
+      "example": "pub fn triple_score(score: i32) -> i32 {\n    let multiplier = 3;\n    score * multiplier\n}\n",
+      "unlock_after": null
+    },
+    {
+      "id": "conditions",
+      "title": "Choose a value with if",
+      "explanation": "An if expression evaluates a boolean condition, such as value < 0, then runs the matching branch. Use else to cover the other case. When if produces a value, both branches must produce the same type. Choosing a branch does not change the immutable input; reassignment would need mut. Here nonnegative(-4) returns 0 and nonnegative(6) returns 6. The branch values and the whole final if expression have no trailing semicolons, allowing the selected i32 to become the function's return value.",
+      "example": "pub fn nonnegative(value: i32) -> i32 {\n    if value < 0 {\n        0\n    } else {\n        value\n    }\n}\n",
+      "unlock_after": "01-variables"
+    },
+    {
+      "id": "mutation",
+      "title": "Update a value with let mut",
+      "explanation": "Ordinary let bindings are immutable. Use let mut when one binding must hold changing values. Assignment updates that existing binding; another let would introduce a new binding instead. Compound assignments such as +=, *=, and -= combine arithmetic with an update. In double_then_reduce(5), score changes from 5 to 10 to 7, while the parameter start remains unchanged. Assignments end with semicolons. The final score expression has no semicolon, so it returns the updated i32 value.",
+      "example": "pub fn double_then_reduce(start: i32) -> i32 {\n    let mut score = start;\n    score *= 2;\n    score -= 3;\n    score\n}\n",
+      "unlock_after": "02-conditions"
+    },
+    {
+      "id": "while-loops",
+      "title": "Repeat while a condition is true",
+      "explanation": "A while loop checks its condition before each iteration and skips its body if the condition starts false. Use let mut for state that changes; ordinary bindings and parameters remain immutable by default. Explicitly update that state in the body so the condition eventually becomes false: without value /= 2 here, a value above 3 would loop forever. u32 holds nonnegative integers, and integer division discards the fractional part. halve_until_small(20) follows 20, 10, 5, 2 and returns 2; an input of 3 skips the loop. The final value expression, without a semicolon, returns the result after the loop.",
+      "example": "pub fn halve_until_small(start: u32) -> u32 {\n    let mut value = start;\n    while value > 3 {\n        value /= 2;\n    }\n    value\n}\n",
+      "unlock_after": "03-mutation"
+    },
+    {
+      "id": "for-loops",
+      "title": "Visit an inclusive range with for",
+      "explanation": "A for loop supplies each next value automatically. The inclusive range 1..=n includes n, unlike 1..n, which excludes it. When n is 0, the ascending range 1..=n is empty. The loop binding factor is immutable by default and is newly bound each iteration; the accumulated product needs let mut because *= updates it. For these small example inputs, product_through(4) returns 24 and product_through(0) returns its initial product, 1, without overflow. The final product expression has no semicolon and returns the u32 result. Unlike while, this loop needs no manual counter update.",
+      "example": "pub fn product_through(n: u32) -> u32 {\n    let mut product = 1;\n    for factor in 1..=n {\n        product *= factor;\n    }\n    product\n}\n",
+      "unlock_after": "04-while"
+    }
+  ],
+  "lessons": [
+    {
+      "challenge": "01-variables",
+      "title": "01. Give Values a Name",
+      "concepts": ["variables"],
+      "prerequisites": []
+    },
+    {
+      "challenge": "02-conditions",
+      "title": "02. Make a Choice",
+      "concepts": ["conditions"],
+      "prerequisites": ["01-variables"]
+    },
+    {
+      "challenge": "03-mutation",
+      "title": "03. Change a Value",
+      "concepts": ["mutation"],
+      "prerequisites": ["02-conditions"]
+    },
+    {
+      "challenge": "04-while",
+      "title": "04. Repeat with while",
+      "concepts": ["while-loops"],
+      "prerequisites": ["03-mutation"]
+    },
+    {
+      "challenge": "05-for",
+      "title": "05. Count with for",
+      "concepts": ["for-loops"],
+      "prerequisites": ["04-while"]
+    }
+  ]
+}

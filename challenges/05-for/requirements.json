@@ -1,0 +1,5 @@
+{
+  "entry_point": "sum_with_for",
+  "for_loops": { "start": 1, "end": 255 },
+  "unsafe": false
+}

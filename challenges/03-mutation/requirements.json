@@ -1,0 +1,6 @@
+{
+  "entry_point": "increment_twice",
+  "mutable_bindings": { "start": 1, "end": 255 },
+  "assignments": { "start": 2, "end": 255 },
+  "unsafe": false
+}

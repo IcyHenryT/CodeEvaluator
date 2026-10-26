@@ -1,0 +1,6 @@
+{
+  "loops": { "start": 1, "end": 2 },
+  "unsafe": false,
+  "recursion": false,
+  "clones": { "start": 0, "end": 1 }
+}
